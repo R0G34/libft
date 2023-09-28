@@ -1,0 +1,53 @@
+# Makefile to compile libft.
+
+NAME = libft.a
+
+# Variables
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar -rcs
+RM = rm -f
+
+# Sources
+
+SOURCES =\
+	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c
+
+# Bonus Sources
+
+BSOURCES = ##\
+	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
+	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c##
+
+# Converts .c into .o files
+OBJECTS = $(SOURCES:.c=.o)
+BOBJECTS = $(BSOURCES:.c=.o)
+
+# Standard rule to create libft.a when executing Make
+all: $(NAME)
+
+# This builds the static library libft.a using the objects listed in $(OBJECTS)
+$(NAME):$(OBJECTS)
+	$(AR) $@ $(OBJECTS)
+
+# This builds the static library libft.a using the objects listed in $(BOBJECTS)
+bonus: $(BOBJECTS)
+	$(AR) $(NAME) $(OBJECTS)
+
+# Applies the rules to follow when compiling sources into objects
+%.o:%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Removes all the .o files
+clean:
+	$(RM) $(OBJECTS) $(BOBJECTS)
+
+# Removes the .o files and the library too
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all, clean, fclean, re
