@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 10:09:30 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/09/29 08:38:28 by abausa-v         ###   ########.fr       */
+/*   Created: 2023/09/30 10:28:15 by abausa-v          #+#    #+#             */
+/*   Updated: 2023/09/30 10:44:24 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
+	void	*result;
 
-	i = 0;
-	if (dst == src || !n)
-		return (dst);
-	while (i < n)
+	result = malloc(count * size);
+	if (!result)
+		return (NULL);
+	else
 	{
-		*(char *)(dst + i) = *(const char *)(src + i);
-		i++;
+		ft_bzero(result, (count * size));
+		return (result);
 	}
-	return (dst);
 }

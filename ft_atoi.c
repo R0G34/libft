@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 10:09:30 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/09/29 08:38:28 by abausa-v         ###   ########.fr       */
+/*   Created: 2023/09/30 09:20:39 by abausa-v          #+#    #+#             */
+/*   Updated: 2023/09/30 10:14:56 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
+	int	sign;
+	int	result;
+	int	i;
 
 	i = 0;
-	if (dst == src || !n)
-		return (dst);
-	while (i < n)
+	result = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] && (str[i] == 43 || str[i] == 45))
 	{
-		*(char *)(dst + i) = *(const char *)(src + i);
+		if (str[i] == 45)
+			sign *= -1;
 		i++;
 	}
-	return (dst);
+	while (str[i] && (str[i] >= 48 && str[i] <= 57))
+	{
+		result = (str[i] - 48) + result * 10;
+		i++;
+	}
+	return (result * sign);
 }
