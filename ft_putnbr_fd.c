@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 10:48:50 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/10/04 08:43:24 by abausa-v         ###   ########.fr       */
+/*   Created: 2023/10/04 13:35:02 by abausa-v          #+#    #+#             */
+/*   Updated: 2023/10/04 19:53:13 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	while (*str != '\0' || (char)c == '\0')
+	char	digit;
+	int		num;
+
+	num = 1;
+	if (n < 0)
 	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
+		ft_putchar_fd('-', fd);
+		num *= -1;
 	}
-	return (NULL);
+	if (n / 10)
+		ft_putnbr_fd(n / 10 * num, fd);
+	digit = '0' + n % 10 * num;
+	ft_putchar_fd(digit, fd);
 }
