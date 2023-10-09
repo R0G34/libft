@@ -22,8 +22,10 @@ SOURCES =\
 
 # Bonus Sources
 
-BSOURCES = ft_lstnew.c ft_lstadd_front.c #/*ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+BSOURCES =\
+	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
+	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\
+	ft_lstmap.c
 
 # Converts .c into .o files
 OBJECTS = $(SOURCES:.c=.o)
@@ -37,8 +39,8 @@ $(NAME):$(OBJECTS)
 	$(AR) $@ $(OBJECTS)
 
 # This builds the static library libft.a using the objects listed in $(BOBJECTS)
-bonus: $(BOBJECTS)
-	$(AR) $(NAME) $(OBJECTS)
+bonus: $(OBJECTS) $(BOBJECTS)
+	$(AR) -r $(NAME) $?
 
 # Applies the rules to follow when compiling sources into objects
 %.o:%.c

@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 20:10:33 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/10/09 19:11:58 by abausa-v         ###   ########.fr       */
+/*   Created: 2023/10/09 19:42:44 by abausa-v          #+#    #+#             */
+/*   Updated: 2023/10/09 19:50:40 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*result;
+	t_list	*temp;
+
+	result = 0;
+	while (lst)
+	{
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&result, del);
+			return (0);
+		}
+		ft_lstadd_back(&result, temp);
+		lst = lst->next;
+	}
+	return (result);
 }

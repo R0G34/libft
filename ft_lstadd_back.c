@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 20:10:33 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/10/09 19:11:58 by abausa-v         ###   ########.fr       */
+/*   Created: 2023/10/09 19:32:53 by abausa-v          #+#    #+#             */
+/*   Updated: 2023/10/09 19:34:04 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*temp;
+
+	temp = ft_lstlast(*lst);
+	if (!temp)
+		*lst = new;
+	else
+		temp->next = new;
 }
