@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd_u.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abausa-v <abausa-v@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 13:35:02 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/12/13 11:25:50 by abausa-v         ###   ########.fr       */
+/*   Created: 2023/12/13 11:30:30 by abausa-v          #+#    #+#             */
+/*   Updated: 2023/12/13 11:45:11 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd_u(long n, int fd)
 {
-	char	digit;
-	int		num;
+	long	nb;
+	int		nprint;
 
-	num = 1;
-	if (n < 0)
+	nb = n;
+	nprint = 0;
+	if (nb > 9)
 	{
-		ft_putchar_fd('-', fd);
-		num *= -1;
+		nprint = ft_putnbr_fd(nb / 10, fd);
+		nb = nb % 10;
 	}
-	if (n / 10)
-		ft_putnbr_fd(n / 10 * num, fd);
-	digit = '0' + n % 10 * num;
-	ft_putchar_fd(digit, fd);
+	if (nb <= 9)
+	{
+		ft_putchar_fd(nb + '0', fd);
+		nprint++;
+	}
+	return (nprint);
 }
