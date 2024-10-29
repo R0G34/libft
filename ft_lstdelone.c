@@ -6,7 +6,7 @@
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 19:36:06 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/12/13 11:43:40 by abausa-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:36:53 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 	{
 		del(lst->content);
 		free(lst);
-	}
+	}	
 }

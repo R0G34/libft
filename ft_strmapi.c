@@ -6,7 +6,7 @@
 /*   By: abausa-v <abausa-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:32:22 by abausa-v          #+#    #+#             */
-/*   Updated: 2023/10/05 18:43:13 by abausa-v         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:09:43 by abausa-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*result;
 
-	if (s == '\0')
+	if (*s == '\0')
 		return (NULL);
 	result = malloc(ft_strlen(s) + 1);
 	if (!result)
